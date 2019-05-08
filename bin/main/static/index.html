@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="/">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Fırat Üniversitesi Öneri ve Şikayet Sistemi</title>
+
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/angular-cookies.js"></script>
+
+
+<script src="js/home/HomeController.js"></script>
+<script src="js/home/HomeService.js"></script>
+
+<script src="js/admin/AdminController.js"></script>
+<script src="js/admin/AdminService.js"></script>
+
+<script src="js/isteksikayet/IstekSikayetController.js"></script>
+<script src="js/isteksikayet/IstekSikayetService.js"></script>
+
+<script src="js/authenticated/authentication.service.js"></script>
+
+
+<link rel="stylesheet" href="css/main.css" />
+<!-- Bootstrap core CSS-->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<!-- Page level plugin CSS-->
+<link href="vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+
+<link rel="icon" type="image/png" href="images/headerLogo.png" />
+
+</head>
+
+<body ng-app="app">
+
+	<div class="navbar-header navbar-custom">
+		<div class="container">
+			<a href="https://firat.edu.tr" class="navbar-brand" class="logo"
+				style="margin-left: -15px;"><img src="images/headerLogo.png"
+				style="margin-top: -5px; width: 30px; height: 30px;"></a> <a
+				href="https://firat.edu.tr" class="navbar-brand" class="logo"
+				style="color: white; margin-left: -15px; letter-spacing: 0.7px;"><b>Fırat</b>
+				Üniversitesi</a>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-2"></div>
+
+			<div class="col-md-8">
+				<div ng-view></div>
+			</div>
+
+		</div>
+
+
+	</div>
+	<br>
+	<br>
+	<footer class="sticky-footer" style="width: 100%">
+		<div class="text-center">
+			<small>Copyright © Fırat Üniversitesi İstek ve Şikayet
+				Sistemi 2018</small>
+		</div>
+
+	</footer>
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<script src="js/jquery.mask.min.js"></script>
+
+
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Page level plugin JavaScript-->
+	<script src="vendor/datatables/jquery.dataTables.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
+	<!-- Custom scripts for this page-->
+	<script src="js/sb-admin-datatables.min.js"></script>
+
+
+	<script>
+		$(document).ready(function($) {
+			$("#validationCode").mask("999999");
+
+		});
+	</script>
+
+
+</body>
+
+
+
+</html>

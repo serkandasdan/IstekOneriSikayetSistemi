@@ -1,0 +1,105 @@
+
+<div ng-controller="IstekSikayetController">
+	<br>
+	<div class="mainTitle">
+		<p>İstek Şikayet Öneri Sistemi</p>
+	</div>
+
+	<br>
+	<div class="form">
+
+		<form name="frm">
+
+			<p class="textTitle">Ad Soyad</p>
+			<input type="text" name="name" id="name" class="form-control"
+				ng-model="message.sender" required/> </br>
+			<p class="textTitle">Bölüm</p>
+			<input type="text" name="department" id="bolum" class="form-control"
+				ng-model="message.department" required /> </br>
+			<p class="textTitle">E-Mail</p>
+			<input type="email" name="email" id="email" class="form-control"
+				ng-model="message.email" required /> </br>
+			<p class="textTitle">Telefon</p>
+			<input type="text" name="phone" id="phone" class="form-control"
+				ng-model="message.phoneNumber" required /> </br>
+			<p class="textTitle">Konu</p>
+			<div class="form-group">
+				<select class="form-control" ng-model="message.subject"
+					ng-init="defaultSubject()">
+					<option selected>İstek</option>
+					<option>Öneri</option>
+					<option>Şikayet</option>
+					<option>Değerlendirme</option>
+				</select>
+
+			</div>
+			</br>
+			<p class="textTitle">
+				Mesaj (En fazla <b
+					ng-style="longMessage - message.message.length==0 && {'color':'red'}">{{longMessage
+					- message.message.length}}</b> karakter)
+			</p>
+			<textarea name="message" class="form-control" rows="5"
+				ng-trim="false" id="message" style="resize: vertical"
+				maxlength="{{longMessage}}" ng-model="message.message" required /></textarea>
+
+			</br> <br>
+
+			<button type="submit" ng-disabled="frm.$invalid" class="btn btn-info"
+				data-toggle="modal" data-target="#emailValidationModal"
+				data-backdrop="static" data-keyboard="false" ng-click="sendValidationCode()">Gönder</button>
+
+		</form>
+	</div>
+
+	</br> <br>
+	
+	
+
+	<!-- Email Validation Modal-->
+	<div class="modal fade" id="emailValidationModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">E-posta
+						Doğrulama</h5>
+					<button class="close" type="button" data-dismiss="modal" ng-click="cancelSendMessage()"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Lütfen <b>{{message.email}}</b> adresine gönderilen 6 haneli
+					doğrulama kodunu giriniz.
+				</div>
+
+				<div class="modal-body">
+					Doğrulama Kodu:<input type="text" class="form-control" placeholder="Kodunu Gir"
+						id="validationCode" ng-model="validationCode" ng-disabled="remainingTime === 0" />
+				</div>
+
+				<div class="modal-footer">
+					<div class="container mr auto">
+						Kalan Süre:&nbsp;<b ng-style="{'color':'red'}">{{remainingTime}}&nbsp;sn</b>
+						&nbsp;&nbsp;&nbsp;
+						
+								<button class="btn btn-default btn-sm" type="button" ng-show="remainingTime === 0"
+						ng-click="sendValidationCode()"><i class="fa fa-fw fa-retweet"></i>Yeniden Gönder</button>
+					</div>
+					
+					
+
+
+
+					<button class="btn btn-info" type="button"
+						ng-click="getValidationCode()" ng-disabled="remainingTime === 0">Onayla</button>
+						
+
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal" ng-click="cancelSendMessage()">İptal</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

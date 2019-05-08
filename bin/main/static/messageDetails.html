@@ -1,0 +1,137 @@
+
+<div class="container" ng-controller="AdminController">
+
+	<div class="row">
+
+		<div class="col-md-3"></div>
+
+		<div class="col-md-4">
+
+			<button type="submit" class="btn btn-success" data-toggle="modal"
+				data-target="#moveToModal">
+				<i class="fa fa-fw fa-reply"></i>Mesajı Taşı
+			</button>
+			&nbsp;&nbsp;&nbsp;
+			<button type="submit" class="btn btn-danger" data-toggle="modal"
+				data-target="#deleteModal">
+				<i class="fa fa-fw fa-trash"></i>Mesajı Sil
+			</button>
+
+		</div>
+
+	</div>
+	<hr>
+	
+	<div class="row">
+
+		<div class="col-md-10">
+
+			<table class="messageDetailsTable" cellpadding="10" frame="box">
+
+				<tr style="border: 1px solid black">
+					<th><i class="fa fa-table"></i>&nbsp;{{statusTitle}}</th>
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<th width="200px">Konu:</th>
+					<td>{{subject}}</td>
+				</tr>
+				<tr>
+					<th>Gönderen:</th>
+					<td>{{sender}}</td>
+				</tr>
+				<tr>
+					<th>Bölümü:</th>
+					<td>{{department}}</td>
+				</tr>
+				<tr>
+					<th>E-Posta Adresi:</th>
+					<td>{{email}}</td>
+				</tr>
+				<tr>
+					<th>Telefon Numarası:</th>
+					<td>{{phoneNumber}}</td>
+				</tr>
+				<tr>
+					<th>Oluşturulma Tarihi:</th>
+					<td>{{createDate}}</td>
+				</tr>
+
+				<tr>
+					<th valign="top">Mesaj İçeriği:</th>
+					<td>{{message}}</td>
+				</tr>
+
+			</table>
+
+		</div>
+	</div>
+
+
+	<!-- Move To Status Modal-->
+	<div class="modal fade" id="moveToModal" tabindex="-1" role="dialog"
+		aria-labelledby="moveToModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="moveToModalLabel">
+						Şuraya Taşı: <select ng-model="newStatus"
+							style="border: 1px solid gray"
+							class="btn btn-default dropdown-toggle">
+							<option>Yeni Gelenler</option>
+							<option>Okunanlar</option>
+							<option>İncelenenler</option>
+							<option>Sonuçlananlar</option>
+						</select>
+					</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Taşımak istediğinizden emin misiniz?</div>
+				<div class="modal-footer">
+					<button class="btn btn-success" type="button" data-dismiss="modal"
+						ng-click="moveToMessage()">Taşı</button>
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Hayır</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Delete Message Modal-->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteModalLabel">Mesajı Sil</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Mesajı silmek istediğinizden emin
+					misiniz?</div>
+				<div class="modal-footer">
+
+					<button class="btn btn-danger" type="button" data-dismiss="modal"
+						ng-click="deleteMessage(id)">Sil</button>
+
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Hayır</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+

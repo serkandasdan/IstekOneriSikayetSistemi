@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="/">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Fırat Üniversitesi Öneri ve Şikayet Sistemi</title>
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/angular-cookies.js"></script>
+
+
+
+<script src="js/home/HomeController.js"></script>
+<script src="js/home/HomeService.js"></script>
+
+<script src="js/admin/AdminController.js"></script>
+<script src="js/admin/AdminService.js"></script>
+
+<script src="js/authenticated/authentication.service.js"></script>
+
+<link rel="shortcut icon" href="images/headerLogo.png" />
+
+<link rel="stylesheet" href="css/main.css" />
+<!-- Bootstrap core CSS-->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<!-- Page level plugin CSS-->
+<link href="vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="images/headerLogo.png" />
+
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" ng-app="app"
+	ng-controller="AdminController" ng-init="getAllMessages()">
+	<!-- Navigation-->
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+		id="mainNav">
+		<img src="images/adminLogo.jpg" style="width: 30px; height: 30px;"><a
+			class="navbar-brand" href="adminPanel.html">&nbsp;Admin Paneli</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarResponsive"
+			aria-controls="navbarResponsive" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
+				<li class="nav-item" data-toggle="tooltip" data-placement="right"
+					title="Gelen Mesajlar"><a
+					ng-click="setFirstUrl('messages.html')"
+					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+					href="#collapseMulti" data-parent="#exampleAccordion"> <i
+						class="fa fa-fw fa-envelope"></i> <span class="nav-link-text">Gelen
+							Mesajlar</span>
+				</a>
+
+					<ul class="sidenav-second-level collapse" id="collapseMulti">
+						<li><a href="#" ng-click="getMessages(1)"><i
+								class="fa fa-fw fa-certificate"></i> Yeni Gelenler
+								({{newMessage}})</a></li>
+						<li><a href="#" ng-click="getMessages(2)"><i
+								class="fa fa-fw fa-check"></i> Okunanlar ({{readMessage}})</a></li>
+						<li><a href="#" ng-click="getMessages(3)"><i
+								class="fa fa-fw fa-search"></i> İncelenenler
+								({{examineMessage}})</a></li>
+						<li><a href="#" ng-click="getMessages(4)"><i
+								class="fa fa-fw fa-sticky-note"></i> Sonuçlananlar
+								({{resultMessage}})</a></li>
+						<li><a href="#" ng-click="getAllMessages()"> Tümü
+								({{allMessage}})</a></li>
+					</ul></li>
+
+
+
+
+
+
+				<li class="nav-item" data-toggle="tooltip" data-placement="right"
+					title="Kullanıcı
+							İşlemleri"><a
+					class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+					href="#collapseMulti2" data-parent="#exampleAccordion2"> <i
+						class="fa fa-fw fa-cog"></i> <span class="nav-link-text">Kullanıcı
+							İşlemleri</span>
+				</a>
+
+					<ul class="sidenav-second-level collapse" id="collapseMulti2">
+
+						<li><a href="#" data-toggle="modal"
+							data-target="#usernameChangeModal"><i
+								class="fa fa-fw fa-user"></i> Kullanıcı Adı Değiştir</a></li>
+
+
+						<li><a href="#" data-toggle="modal"
+							data-target="#passwordChangeModal"><i class="fa fa-fw fa-key"></i>
+								Şifre Değiştir</a></li>
+
+					</ul></li>
+
+
+			</ul>
+
+			<ul class="navbar-nav sidenav-toggler">
+				<li class="nav-item"><a class="nav-link text-center"
+					id="sidenavToggler"> <i class="fa fa-fw fa-angle-left"></i>
+				</a></li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+
+				<li class="nav-item"><a class="nav-link" data-toggle="modal"
+					data-target="#logoutModal"> <i class="fa fa-fw fa-sign-out"></i>Çıkış
+						Yap
+				</a></li>
+			</ul>
+		</div>
+
+	</nav>
+
+
+	<div class="content-wrapper" ng-init="getFirstUrl()">
+
+
+		<div ng-include="includeUrl"></div>
+
+		</br>
+		<footer class="sticky-footer">
+			<div class="container">
+				<div class="text-center">
+					<small>Copyright © Fırat Üniversitesi İstek ve Şikayet
+						Sistemi 2018</small>
+				</div>
+			</div>
+		</footer>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fa fa-angle-up"></i>
+		</a>
+
+
+
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="logoutModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="logoutModalLabel">Çıkış Yap</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Oturumu sonladırmak istediğinizden
+						emin misiniz?</div>
+					<div class="modal-footer">
+						<button class="btn btn-info" ng-click="logout()" type="button">Sonlandır</button>
+
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Hayır</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Password Change Modal-->
+		<div class="modal fade" id="passwordChangeModal" tabindex="-1"
+			role="dialog" aria-labelledby="passwordChangeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="passwordChangeModalLabel">Şifre
+							Değiştir</h5>
+						<button class="close" type="button" data-dismiss="modal" ng-click="resetPasswordFields()"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form name="frm2">
+
+
+							<p class="textTitle">Mevcut Parola</p>
+							<input type="password" name="currentPassword"
+								id="currentPassword" class="form-control"
+								ng-model="currentPassword" required /> <span style="color: red">{{currentPasswordInfo}}</span>
+
+
+							<p class="textTitle">Yeni Parola</p>
+							<input type="password" name="newPassword" id="newPassword"
+								class="form-control" ng-model="newPassword" required /> <span
+								style="color: red">{{dontMatchPasswordInfo}}</span>
+
+
+
+							<p class="textTitle">Yeni Parola Tekrar</p>
+							<input type="password" name="controlPassword"
+								id="controlPassword" class="form-control"
+								ng-model="controlPassword" required />
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-success" type="button"
+							ng-disabled="frm2.$invalid" ng-click="changePassword()">Parola
+							Değiştir</button>
+
+						<button class="btn btn-secondary" type="button" ng-click="resetPasswordFields()"
+							data-dismiss="modal">İptal</button>
+
+					</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		<!-- Username Change Modal-->
+		<div class="modal fade" id="usernameChangeModal" tabindex="-1"
+			role="dialog" aria-labelledby="usernameChangeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="usernameChangeModalLabel">Kullanıcı Adını Değiştir</h5>
+						<button class="close" type="button" data-dismiss="modal" ng-click="resetUsernameFields()"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form name="frm3">
+
+
+							<p class="textTitle">Mevcut Kullanıcı Adı</p>
+							<input type="text" name="currentUsername"
+								id="currentUsername" class="form-control"
+								ng-model="currentUsername" required /> <span style="color: red">{{currentUsernameInfo}}</span>
+
+
+
+							<p class="textTitle">Yeni Kullanıcı Adı</p>
+							<input type="text" name="newUsername"
+								id="newUsername" class="form-control"
+								ng-model="newUsername" required />
+								
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-info" type="button"
+							ng-disabled="frm3.$invalid" ng-click="changeUsername()">
+							Değiştir</button>
+
+						<button class="btn btn-secondary" type="button" ng-click="resetUsernameFields()"
+							data-dismiss="modal">İptal</button>
+
+					</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+
+
+
+
+	</div>
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Page level plugin JavaScript-->
+	<script src="vendor/datatables/jquery.dataTables.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
+	<!-- Custom scripts for this page-->
+	<script src="js/sb-admin-datatables.min.js"></script>
+
+
+
+</body>
+
+</html>

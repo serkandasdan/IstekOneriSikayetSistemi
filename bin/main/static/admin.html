@@ -1,0 +1,44 @@
+
+<div ng-controller="AdminController">
+
+	<div class="row">
+
+		<div class="col-md-2"></div>
+
+		<div class="col-md-8">
+
+
+			<form class="form" style="margin-top: 70px;" name="loginForm"
+				ng-submit="getUser()">
+
+				<div>
+					<p class="panelTitle">
+						<img class="imgLogo" src="images/adminLogo.jpg"> Admin Girişi
+					</p>
+				</div>
+
+
+				<p class="textTitle">Kullanıcı Adı</p>
+				<input type="text" name="username" id="username"
+					class="form-control" ng-model="user.username" required />
+				<p class="textTitle">Şifre</p>
+				<input type="password" name="password" id="password"
+					class="form-control" ng-model="user.password" required />
+
+</br>
+				<button type="submit" ng-disabled="loginForm.$invalid"
+					class="btn btn-info">Giriş</button>
+					</br>
+					</br>
+				<p style="color: red">{{message}}</p>
+			</form>
+
+
+		</div>
+
+		<div class="col-md-2"></div>
+
+
+	</div>
+
+</div>

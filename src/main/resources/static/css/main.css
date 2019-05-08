@@ -1,0 +1,50 @@
+.textTitle {
+	color: gray;
+}
+
+.form {
+	border: 1px solid lightgray;
+	padding: 20px 50px 50px 50px;
+}
+
+.textareaMessage {
+	rezise: none;
+}
+
+.panelTitle {
+	font-family: times new roman;
+	font-style: bold;
+	font-size: 23px;
+	padding: 15px 0 15px 50px;
+	color: black;
+	background-color: #e5e5e5;
+}
+
+.imgLogo {
+	max-height: 70px;
+	max-width: 70px;
+	padding-right: 15px;
+}
+
+.navbar-custom {
+	color: #ffffff;
+	background-color: #660E0D;
+	width: 100%;
+}
+
+.mainTitle {
+	text-align: center;
+	min-height: 30px;
+	font-family: 'Times New Roman';
+	font-size: 23px;
+	padding-top: 5px;
+	color: white;
+	background-color: #31B0D5;
+}
+
+.messageDetailsTable {
+	margin: 50px 0px 0px 50px;
+}
+
+
+
